@@ -1,0 +1,9 @@
+rootProject.name = 'RealmExpertMC'
+
+include ':mcp'
+include ':clean'
+include ':RealmExpertMC'
+
+project(":mcp").projectDir = file("projects/mcp")
+project(":clean").projectDir = file("projects/clean")
+project(":RealmExpertMC").projectDir = file("projects/RealmExpertMC")

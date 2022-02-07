@@ -1,0 +1,17 @@
+--- ../src-base/minecraft/net/minecraft/advancements/AdvancementList.java
++++ ../src-work/minecraft/net/minecraft/advancements/AdvancementList.java
+@@ -128,12 +128,12 @@
+                     }
+ 
+                     Entry<ResourceLocation, Advancement.Builder> entry1 = (Entry)iterator.next();
+-                    field_192091_a.error("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
++                    field_192091_a.debug("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
+                 }
+             }
+         }
+ 
+-        field_192091_a.info("Loaded " + this.field_192092_b.size() + " advancements");
++       // LOGGER.info("Loaded " + this.advancements.size() + " advancements"); // CraftBukkit - moved to AdvancementDataWorld#reload
+     }
+ 
+     public void func_192087_a()
