@@ -146,7 +146,7 @@ project(':RealmExpertMC') {
         BINPATCH_TOOL = 'net.minecraftforge:binarypatcher:1.1.1:fatjar'
     }
 
-    version = '1.12.2-1'
+    version = '1.12.2-'+ JenkinsNumber()
 
     patcher {
         exc = file("$rootDir/src/main/resources/forge.exc")
@@ -179,7 +179,7 @@ project(':RealmExpertMC') {
         MANIFESTS = [
                 '/': [
                         'Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                        'GitCommit': grgit.head().abbreviatedId,
+                        //'GitCommit': grgit.head().abbreviatedId,
                         'Git-Branch': '1.12.2'
                 ] as LinkedHashMap,
                 'br.com.realmexpert/': [
@@ -661,10 +661,59 @@ project(':RealmExpertMC') {
         sourceSets.test.java.srcDirs.each { extractMappedNew.addTarget it }
     }
 
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifact universalJar
+                artifact userdevJar
+                artifact sourcesJar
+
+                pom {
+                    name = 'RealmExpertMC'
+                    groupId = 'br.com.realmexpert'
+                    artifactId = 'RealmExpertMC'
+                    version = "1.12.2-" + JenkinsNumber()
+                    description = 'Minecraft Forge Hybrid server implementing the Spigot/Bukkit/Paper API, formerly known as Thermos/Cauldron/MCPC+.'
+                    url = 'https://github.com/RealmExpertMC/RealmExpertMC'
+
+                    scm {
+                        url = 'https://github.com/RealmExpertMC/RealmExpertMC'
+                        connection = 'scm:git:git://github.com/RealmExpertMC/RealmExpertMC.git'
+                        developerConnection = 'scm:git:git://github.com/RealmExpertMC/RealmExpertMC.git'
+                    }
+
+                    issueManagement {
+                        system = 'github'
+                        url = 'https://github.com/RealmExpertMC/RealmExpertMC/issues'
+                    }
+
+                    licenses {
+                        license {
+                            name = ' GPL-3.0'
+                            url = 'https://github.com/RealmExpertMC/RealmExpertMC/blob/1.12.2/LICENSE'
+                            distribution = 'repo'
+                        }
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username = System.getenv("OSSRH_USERNAME")
+                    password = System.getenv("OSSRH_PASSWORD")
+                }
+                def releasesRepoUrl = "https://s01.oss.sonatype.org/content/repositories/releases/"
+                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                url = project.version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            }
+        }
+    }
     signing {
         def signingKey = System.getenv("GPG_PRIVATE_KEY")
         def signingPassword = System.getenv("GPG_PASSPHRASE")
         useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.mavenJava
     }
 }
 

@@ -588,7 +588,7 @@
 +        if (this.field_73010_i.isEmpty() && getPersistentChunks().isEmpty())
          {
 -            if (this.field_80004_Q++ >= 300)
-+            if (this.field_80004_Q++ >= RealmExpertMCConfig.instance.entityTickLimit.getValue()) // RealmExpertMC // by CraftDream
++            if (this.field_80004_Q++ >= br.com.realmexpert.configuration.RealmExpertMCConfig.instance.entityTickLimit.getValue()) // RealmExpertMC // by CraftDream
              {
                  return;
              }

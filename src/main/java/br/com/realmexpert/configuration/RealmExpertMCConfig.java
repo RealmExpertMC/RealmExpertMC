@@ -67,7 +67,7 @@ public class RealmExpertMCConfig extends ConfigBase {
     public final StringSetting ANSI_FATAL_TIME = new StringSetting(this, "consolecolor.fatal-time", "c");
     public final StringSetting ANSI_TRACE_TIME = new StringSetting(this, "consolecolor.trace-time", "c");
 
-    public final BoolSetting disableForgeChunkForceSystem = new BoolSetting(this, "forge.disablechunkforcesystem", false); // by Goodvise
+    public BoolSetting disableForgeChunkForceSystem = new BoolSetting(this, "forge.disablechunkforcesystem", false); // by Goodvise
     public final BoolSetting stopserversaveworlds = new BoolSetting(this, "world.stopserversaveworlds", false);
     public final BoolSetting disableannounceAdvancements = new BoolSetting(this, "disable-announce-Advancements", false);
 
@@ -86,7 +86,7 @@ public class RealmExpertMCConfig extends ConfigBase {
     public final BoolSetting fakePlayerLogin = new BoolSetting(this, "fake-players.do-login", false);
     public final BoolSetting CloseChatInConsole = new BoolSetting(this, "RealmExpertMC.CloseChatInConsole", false);
     public final IntSetting minChunkLoadThreads = new IntSetting(this, "settings.min-chunk-load-threads", 2);
-    public final BoolSetting keepSpawnInMemory = new BoolSetting(this, "keep-spawn-loaded", true);
+    public BoolSetting keepSpawnInMemory = new BoolSetting(this, "keep-spawn-loaded", true);
     public final BoolSetting RealTimeTicking = new BoolSetting(this, "RealmExpertMC.realtimeticking", false);
     public final BoolSetting FailOnUnresolvedGameProfile = new BoolSetting(this, "RealmExpertMC.fail-on-unresolved-gameprofile", true);
     public final IntSetting entityTickLimit = new IntSetting(this, "entity-tick-limit", 300); // by CraftDream

@@ -233,7 +233,7 @@
 +        });
 +        this.getServer().addWorld(this.craftWorld);
 +        // CraftBukkit end
-+        this.keepSpawnInMemory = RealmExpertMCConfig.instance.keepSpawnInMemory.getValue(); // Paper
++        this.keepSpawnInMemory = br.com.realmexpert.configuration.RealmExpertMCConfig.instance.keepSpawnInMemory.getValue(); // Paper
 +        timings = new co.aikar.timings.WorldTimingsHandler(this); // Paper - code below can generate new world and access timings
 +        this.entityLimiter = new org.spigotmc.TickLimiter(spigotConfig.entityMaxTickTime);
 +        this.tileLimiter = new org.spigotmc.TickLimiter(spigotConfig.tileMaxTickTime);
@@ -1972,7 +1972,7 @@
 +
 +    public Iterator<Chunk> getPersistentChunkIterable(Iterator<Chunk> chunkIterator)
 +    {
-+        if (RealmExpertMCConfig.instance.disableForgeChunkForceSystem.getValue())
++        if (br.com.realmexpert.configuration.RealmExpertMCConfig.instance.disableForgeChunkForceSystem.getValue())
 +        {
 +            return chunkIterator;
 +        }
